@@ -16,6 +16,7 @@
     </tr>
     <tr *ngFor="let tarefa of tarefas">
       <td
+        [tarefaConcluida]="tarefa.concluida"
         [class.success]="!tarefa.concluida"
       >
         {{ tarefa.nome }}
@@ -25,6 +26,7 @@
           type="checkbox"
           [value]="tarefa.id"
           [checked]="tarefa.concluida"
+          (click)="alterarStatus(tarefa)"
         >
       </td>
       <td class="text-center" style="width: 200px">
@@ -37,7 +39,9 @@
         </a>
         <a href="#" title="Remover" alt="Remover"
 
-          class="btn btn-xs btn-danger">
+          class="btn btn-xs btn-danger"
+          (click)="remover($event, tarefa)"
+        >
           <span class="glyphicon glyphicon-remove"
             aria-hidden="true"></span> Remover
         </a>
